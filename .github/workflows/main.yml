@@ -1,7 +1,7 @@
 on: [push]
 jobs:
   hello-world-job:
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     name: job to say hello world
     steps:
       - name: Checkout
