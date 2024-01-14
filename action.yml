@@ -9,6 +9,6 @@ outputs:
   time: # id of output
     description: 'the time we greet you'
 runs:
-using: 'node20'
-main: 'dist/index.js'
+  using: 'node20'
+  main: 'dist/index.js'
 
