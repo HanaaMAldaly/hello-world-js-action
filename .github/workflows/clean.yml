@@ -12,5 +12,5 @@ jobs:
           token: ${{ secrets.TOKEN }}
           repo_name: hello-world-js-action
           action_name: hello-world-js-action
-          runs_to_keep: 10
+          runs_to_keep: 12
           list_only: false
