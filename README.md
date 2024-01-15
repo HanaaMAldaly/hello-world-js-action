@@ -1,3 +1,4 @@
 # hello-world-js-action
 
-## clean task
+## clean task consist of
+- retrive task per page
