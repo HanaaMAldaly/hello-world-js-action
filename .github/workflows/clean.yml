@@ -1,0 +1,15 @@
+on:
+ [push]
+jobs:
+  clean_workflow_runners:
+    runs-on: ubuntu-latest
+    name: Clean workflow runners
+    steps:
+      - name: call clean task
+        uses: HanaaMAldaly/clean-workflow-runners@main
+        with:
+          token: ${{ secrets.token}}
+          repo_name: HanaaMAldaly
+          action_name: hello-world-js-action
+          runs_to_keep: 0
+          list_only: false
