@@ -9,7 +9,7 @@ jobs:
       - name: call clean task
         uses: HanaaMAldaly/clean-workflow-runners@main
         with:
-          token: ${{ secrets.token }}
+          token: ${{ secrets.TOKEN }}
           repo_name: hello-world-js-action
           action_name: hello-world-js-action
           runs_to_keep: 0
