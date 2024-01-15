@@ -2,7 +2,8 @@ on:
  [push]
 jobs:
   clean_workflow_runners:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
+    permissions: write-all
     name: Clean workflow runners
     steps:
       - name: call clean task
