@@ -2,4 +2,5 @@
 
 ## clean task consist of
 - retrive task per page
-- order the tasks depend on creation date
+- order the runners, depend on creation date
+- slice the reaming runners after remove runs to keep
