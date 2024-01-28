@@ -5,7 +5,7 @@ jobs:
   test_action:
    uses: HanaaMAldaly2/MyMovie/.github/workflows/reusable.yml@master
    with:
-     path: .github/labeler.yml
+     path: ../labeler.yml
    secrets: 
      token: ${{secrets.TOKEN}}
     
