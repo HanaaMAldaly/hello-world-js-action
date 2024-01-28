@@ -3,10 +3,15 @@ on:
   [workflow_dispatch, pull_request]
 jobs:
   test_action:
-   uses: HanaaMAldaly2/MyMovie/.github/workflows/reusable.yml@master
-   with:
-     path: .github/labeler.yml
-   secrets: 
-     token: ${{secrets.TOKEN}}
+    runs-on: ubuntu-latest
+    steps:
+        - name: checkout
+          uses: actions/checkout@v4
+        - name: add lable
+          uses: HanaaMAldaly2/MyMovie/.github/workflows/reusable.yml@master
+          with:
+            path: .github/labeler.yml
+          secrets: 
+            token: ${{secrets.TOKEN}}
     
     
