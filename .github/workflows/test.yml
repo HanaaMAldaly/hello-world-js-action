@@ -1,0 +1,12 @@
+name: test
+on:
+  [workflow_dispatch]
+jobs:
+  test_action:
+   uses: HanaaMAldaly2/MyMovie/.github/workflows/build.yml@main
+   with:
+     path: .github/labeler.yml
+   secrets: 
+     token: ${{secrets.TOKEN}}
+    
+    
