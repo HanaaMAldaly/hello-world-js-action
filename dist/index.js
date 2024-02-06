@@ -30910,21 +30910,16 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
     {data: 'link', header:true}
   ]
 
-  let myMarkdown = `## My Header
+  let releaseNotesSummary = `## Release Notes
 
   | PR | Title | Jira ticket | Author
   |--- |--- | --- | --- |
 `
 
-//   let myMarkdown = `## My Header
-//
-//     | PR | Title | Jira ticket | Author |
-//     |--- |--- | --- | --- |
-//`
   releaseNotes.map((pr)=>{
   console.log( pr.title)
-   myMarkdown = myMarkdown.concat(`| #[${pr.number}](${pr.link}) | ${pr.title} | ${pr.ticketsString} | ${pr.owner} | \n`)
-    console.log( myMarkdown)
+   releaseNotesSummary = releaseNotesSummary.concat(`| #[${pr.number}](${pr.link}) | ${pr.title} | ${pr.ticketsString} | ${pr.owner} | \n`)
+    console.log( releaseNotesSummary)
   })
 //  core.summary
 //  .addHeading(releaseNotes[0],'2')
@@ -30937,7 +30932,7 @@ core.setOutput("time", releaseNotes.join('\n'))
 
 
 //core.summary.addRaw(myMarkdown2).write()
-    core.summary.addRaw(myMarkdown).write()
+    core.summary.addRaw(releaseNotesSummary).write()
 }
 
 createReleaseNotes();
