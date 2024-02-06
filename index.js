@@ -111,32 +111,24 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
     {data: 'Author', header: true},
     {data: 'link', header:true}
   ]
+
+     let myMarkdown = `## My Header
+
+     PR | Title | Jira ticket | Author
+     |--- |--- | --- | --- |
+     `
   releaseNotes.map((pr)=>{
-  tableData.push({data:pr.number})
-      tableData.push({data:pr.title})
-      tableData.push({data:pr.ticketsString})
-      tableData.push({data:pr.owner})
-      tableData.push({data: pr.link})})
+  myMarkdown.append(`| ${pr.number} | ${pr.title} | ${pr.ticketsString} | ${pr.owner} | `)
+  })
 //  core.summary
 //  .addHeading(releaseNotes[0],'2')
 //  .addList(releaseNotes.slice(1,releaseNotes.length)).write({overwrite: true})
 core.setOutput("time", releaseNotes.join('\n'))
-core.summary
-   .addTable([tableData])
-   .write()
+//core.summary
+//   .addTable([tableData])
+//   .write()
 
-   const myMarkdown = `## My Header
 
-   ---
-   Some stuff here :green_circle: With a [link](https://github.com)
-
-   ### Maybe Add A table
-
-   | Header1 | Header2 | Header3 |
-   |--- |--- | --- |
-   | [link](https://github.com)
-   | value2 | value |
-   `
 
     core.summary.addRaw(myMarkdown).write()
 }
