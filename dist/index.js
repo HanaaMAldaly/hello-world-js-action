@@ -30889,7 +30889,7 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
   '- fix: changing rewards preprod url (#[3175](https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3175)) - by farah-elsayed (05-02-2024 15:17 +00:00)']
   fs.appendFileSync("release_notes.txt", releaseNotes.join('\n'));
   core.summary
-  addHeading(release_notes[0],2)
+  .addHeading(release_notes[0],'2')
   .addList(releaseNotes.slice(1,release_notes.length)).write({overwrite: true})
 }
 
