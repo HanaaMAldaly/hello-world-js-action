@@ -115,8 +115,8 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
   tableData.push({data:pr.number})
       tableData.push({data:pr.title})
       tableData.push({data:pr.ticketsString})
-      tableData.push({data:pr.owner})})
-      tableData.push({data: pr.link})
+      tableData.push({data:pr.owner})
+      tableData.push({data: pr.link})})
 //  core.summary
 //  .addHeading(releaseNotes[0],'2')
 //  .addList(releaseNotes.slice(1,releaseNotes.length)).write({overwrite: true})
