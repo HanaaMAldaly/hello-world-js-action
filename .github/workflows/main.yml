@@ -17,5 +17,5 @@ jobs:
         run: |
 
           # Generate Release notes file
-          echo "release notes ${{ inputs.WORKSPACE }}/releasenotes.txt" >> $GITHUB_STEP_SUMMARY
+          cat "releasenotes.txt" >> $GITHUB_STEP_SUMMARY
       
