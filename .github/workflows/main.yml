@@ -14,5 +14,5 @@ jobs:
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
       - name: Print Summary
-        run:  echo '### Hello world! 🚀' >> $GITHUB_STEP_SUMMARY
+        run:  echo ${{ GITHUB_STEP_SUMMARY }}
       
