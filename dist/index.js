@@ -30792,6 +30792,7 @@ var __webpack_exports__ = {};
 (() => {
 //const core = require('@actions/core')
 const github = __nccwpck_require__(5497)
+const fs = __nccwpck_require__(7147);
 //
 //  core.summary
 //  .addHeading('Test Results')
@@ -30867,7 +30868,9 @@ async function createReleaseNotes() {
         })
 
 
-const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"}]
+const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
+{title: 'two',number:2,link:"wwww",owner:"hanaa"},
+{title: 'three',number:3,link:"wwww",owner:"hanaa"}]
 
   const formattedPRs = prList.map((pr) => {
     return `${pr.title} (#[${pr.number}](${pr.link})) - by ${pr.owner}`;
