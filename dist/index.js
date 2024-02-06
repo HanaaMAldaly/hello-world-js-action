@@ -30916,6 +30916,20 @@ core.setOutput("time", releaseNotes.join('\n'))
 core.summary
    .addTable([tableData])
    .write()
+
+   const myMarkdown = `## My Header
+
+   ---
+   Some stuff here :green_circle: With a [link](https://github.com)
+
+   ### Maybe Add A table
+
+   | Header1 | Header2 | Header3 |
+   |--- |--- | --- |
+   | value1 | value2 | value |
+   `
+
+    core.summary.addRaw(myMarkdown).write()
 }
 
 createReleaseNotes();
