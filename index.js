@@ -115,7 +115,7 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
      let myMarkdown = `## My Header
 
      | PR | Title | Jira ticket | Author |
-     |--- |--- | --- | --- |
+     | --- |--- | --- | --- |
 
      `
   releaseNotes.map((pr)=>{
