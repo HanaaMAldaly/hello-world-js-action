@@ -30882,7 +30882,7 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 
   {title:'fix: CMSUnderAgeContract path',
   number:3179,
-  link:'https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3179',
+  link:'[3117](https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3117',
   owner: 'marwan-salem',
   ticketsString:'OPB-16885'
   }]
@@ -30896,12 +30896,19 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 //  '- feat: refill cms integration (#[3117](https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3117)) ([OPB-16558](https://cps.jira.agile.vodafone.com/browse/OPB-16558)) - by luis-susaj (05-02-2024 15:19 +00:00)',
 //  '- fix: changing rewards preprod url (#[3175](https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3175)) - by farah-elsayed (05-02-2024 15:17 +00:00)']
   fs.appendFileSync("release_notes.txt", releaseNotes.join('\n'));
-  const tableData =[]
+  const tableData = [
+    {data: 'PR', header: true},
+    {data: 'Title', header: true},
+    {data: 'Jira ticket', header: true},
+    {data: 'Author', header: true},
+    {data: 'link', header:true}
+  ]
   releaseNotes.map((pr)=>{
   tableData.push({data:pr.number})
       tableData.push({data:pr.title})
       tableData.push({data:pr.ticketsString})
       tableData.push({data:pr.owner})})
+      tableData.push({data: pr.link})
 //  core.summary
 //  .addHeading(releaseNotes[0],'2')
 //  .addList(releaseNotes.slice(1,releaseNotes.length)).write({overwrite: true})
