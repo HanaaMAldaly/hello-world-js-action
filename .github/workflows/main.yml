@@ -14,6 +14,6 @@ jobs:
           token: ${{ secrets.TOKEN }}
       - name: Get the output time
         run: |
-          RELEASE_NOTES_FILE="./releasenotes.txt"
+          RELEASE_NOTES_FILE = "./releasenotes.txt"
           echo "release notes ${{ RELEASE_NOTES_FILE }}" >> $GITHUB_STEP_SUMMARY
       
