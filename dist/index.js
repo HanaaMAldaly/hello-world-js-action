@@ -30900,7 +30900,7 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
   releaseNotes.map((pr)=>{
   tableData.push({data:pr.number})
       tableData.push({data:pr.title})
-      tableData.push({data:ticketsString})
+      tableData.push({data:pr.ticketsString})
       tableData.push({data:pr.owner})})
 //  core.summary
 //  .addHeading(releaseNotes[0],'2')
