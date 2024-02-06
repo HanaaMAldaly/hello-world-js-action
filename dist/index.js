@@ -30890,7 +30890,7 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
   fs.appendFileSync("release_notes.txt", releaseNotes.join('\n'));
   core.summary
   .addHeading(releaseNotes[0],'2')
-  .addList(releaseNotes.slice(1,release_notes.length)).write({overwrite: true})
+  .addList(releaseNotes.slice(1,releaseNotes.length)).write({overwrite: true})
 }
 
 createReleaseNotes();
