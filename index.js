@@ -19,12 +19,12 @@
 //    core.setFailed(error.message)
 //}
 
-const { hideBin } = require('yargs/helpers');
-const yargs = require('yargs/yargs');
-const Moment = require("moment");
-const fs = require('fs');
-const { getOctokit, context } = require("@actions/github");
-const utils = require('../../helpers/utils');
+//const { hideBin } = require('yargs/helpers');
+//const yargs = require('yargs/yargs');
+//const Moment = require("moment");
+//const fs = require('fs');
+//const { getOctokit, context } = require("@actions/github");
+//const utils = require('../../helpers/utils');
 const core = require('@actions/core')
 
 //const yargsOptions = [
