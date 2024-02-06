@@ -13,5 +13,6 @@ jobs:
           who-to-greet: hanaa
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
-        
+      - name: Print Summary
+        run: echo "this is Summary" >> GITHUB_STEP_SUMMARY
       
