@@ -30921,7 +30921,8 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 //     | PR | Title | Jira ticket | Author |
 //     |--- |--- | --- | --- |
 //`
-  releaseNotes.forEach((pr)=>{
+  releaseNotes.map((pr)=>{
+  console.log("Map PR")
    myMarkdown = myMarkdown.concat(`| #[${pr.number}](${pr.link}) | ${pr.title} | ${pr.ticketsString} | ${pr.owner} | `)
   })
 //  core.summary
