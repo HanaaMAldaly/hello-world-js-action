@@ -30906,17 +30906,12 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 
   const myMarkdown2 = `## My Header
 
-  ---
-  Some stuff here :green_circle: With a [link](https://github.com)
-
-  ### Maybe Add A table
-
   | Header1 | Header2 | Header3 |
   |--- |--- | --- |
   | value1 | value2 | value |
 `
      let myMarkdown = `## My Header
-
+     ---
      | PR | Title | Jira ticket | Author |
      | --- |--- | --- | --- |
 
