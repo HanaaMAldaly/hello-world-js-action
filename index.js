@@ -1,7 +1,7 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
 
- await core.summary
+  core.summary
   .addHeading('Test Results')
   .addLink('View staging deployment!', 'https://github.com')
   .write()
