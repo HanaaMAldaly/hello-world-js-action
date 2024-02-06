@@ -3,9 +3,6 @@ const github = require('@actions/github')
 
   await core.summary
   .addHeading('Test Results')
-  .addTable([
-    [{data: 'File', header: true}, {data: 'Result', header: true}]
-  ])
   .addLink('View staging deployment!', 'https://github.com')
   .write()
 
