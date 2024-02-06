@@ -68,13 +68,14 @@ const octokit = github.getOctokit(token);
 
 async function createReleaseNotes() {
 
- const prList = await  octokit.request('GET /repos/{owner}/{repo}/pulls', {
+ const prList2 = await  octokit.request('GET /repos/{owner}/{repo}/pulls', {
             owner: "HanaaMAldaly",
             repo: "hello-world-js-action",
             state: 'open'
         })
 
 
+const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"}]
 
   const formattedPRs = prList.map((pr) => {
     return `${pr.title} (#[${pr.number}](${pr.link})) - by ${pr.owner}`;
