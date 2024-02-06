@@ -1,7 +1,6 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
 
-import * as core from '@actions/core' 
   await core.summary
   .addHeading('Test Results')
   .addCodeBlock(generateTestResults(), "js")
