@@ -16,6 +16,6 @@ jobs:
         shell: bash
         run: |
           
-          RELEASE_NOTES_FILE = "./releasenotes.txt"
+          RELEASE_NOTES_FILE="./releasenotes.txt"
           echo "release notes ${{ RELEASE_NOTES_FILE }}" >> $GITHUB_STEP_SUMMARY
       
