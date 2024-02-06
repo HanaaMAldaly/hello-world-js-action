@@ -26652,7 +26652,7 @@ const core = __nccwpck_require__(5109)
 //});
 
 const token = core.getInput("token")
-const octokit = getOctokit(token);
+const octokit = github.getOctokit(token);
 
 async function createReleaseNotes() {
 

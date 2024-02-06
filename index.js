@@ -64,7 +64,7 @@ const core = require('@actions/core')
 //});
 
 const token = core.getInput("token")
-const octokit = getOctokit(token);
+const octokit = github.getOctokit(token);
 
 async function createReleaseNotes() {
 
