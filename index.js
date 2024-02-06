@@ -63,8 +63,8 @@ const core = require('@actions/core')
 //  ticketFixedPart: 'https://cps.jira.agile.vodafone.com/browse/',
 //});
 
-const octokit = getOctokit(argv.githubToken);
-const { owner, repo } = context.repo;
+const token = core.getInput("token")
+const octokit = getOctokit(token);
 
 async function createReleaseNotes() {
 
