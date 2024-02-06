@@ -30910,13 +30910,14 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
   |--- |--- | --- |
   | value1 | value2 | value |
 `
-     let myMarkdown = `## My Header
+
+   let myMarkdown = `## My Header
 
      | PR | Title | Jira ticket | Author |
      |--- |--- | --- | --- |
-     `
+`
   releaseNotes.map((pr)=>{
-   myMarkdown = myMarkdown.concat(`| ${pr.number} | ${pr.title} | ${pr.ticketsString} | ${pr.owner} | `)
+   //myMarkdown = myMarkdown.concat(`| ${pr.number} | ${pr.title} | ${pr.ticketsString} | ${pr.owner} | `)
   })
 //  core.summary
 //  .addHeading(releaseNotes[0],'2')
