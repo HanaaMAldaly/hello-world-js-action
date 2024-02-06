@@ -90,9 +90,9 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 
   {title:'fix: CMSUnderAgeContract path',
   number:3179,
-  link:'[3117](https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3117',
+  link:'https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3117',
   owner: 'marwan-salem',
-  ticketsString:'OPB-16885'
+  ticketsString:'([OPB-16885](https://cps.jira.agile.vodafone.com/browse/OPB-16885))'
   },
   {title:'fix: CMSUnderAgeContract path  CMSUnderAgeContract path  CMSUnderAgeContract path  CMSUnderAgeContract path  CMSUnderAgeContract path  CMSUnderAgeContract path',
     number:3179,
@@ -131,7 +131,7 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 //`
   releaseNotes.map((pr)=>{
 
-   myMarkdown = myMarkdown.concat(`| #(${pr.link}) | ${pr.title} | ${pr.ticketsString} | ${pr.owner} | `)
+   myMarkdown = myMarkdown.concat(`| (#[${pr.number}](${pr.link})) | ${pr.title} | ${pr.ticketsString} | ${pr.owner} | `)
   })
 //  core.summary
 //  .addHeading(releaseNotes[0],'2')
