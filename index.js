@@ -134,7 +134,8 @@ core.summary
 
    | Header1 | Header2 | Header3 |
    |--- |--- | --- |
-   | value1 | value2 | value |
+   | [link](https://github.com)
+   | value2 | value |
    `
 
     core.summary.addRaw(myMarkdown).write()
