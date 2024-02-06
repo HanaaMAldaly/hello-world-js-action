@@ -30887,10 +30887,10 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
   ticketsString:'[OPB-16885](https://cps.jira.agile.vodafone.com/browse/OPB-16885)'
   },
   {title:'fix: CMSUnderAgeContract path  CMSUnderAgeContract path  CMSUnderAgeContract path  CMSUnderAgeContract path  CMSUnderAgeContract path  CMSUnderAgeContract path',
-    number:3179,
+    number:3678,
     link:'https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3117',
-    owner: 'marwan-salem',
-    ticketsString:'[OPB-16885](https://cps.jira.agile.vodafone.com/browse/OPB-16885)'
+    owner: 'marwan-salem2',
+    ticketsString:'[OPB-16885](https://cps.jira.agile.vodafone.com/browse/OPB-16985)'
     }]
   //(#[3179](https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3179)) ([OPB-16885](https://cps.jira.agile.vodafone.com/browse/OPB-16885)) - by marwan-salem (05-02-2024 16:25 +00:00)',
 //  '- feat: Add general error boundary  (#[3104](https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3104)) ([OPB-17039](https://cps.jira.agile.vodafone.com/browse/OPB-17039)) - by hassan-mostafa2 (05-02-2024 16:22 +00:00)',
@@ -30922,7 +30922,7 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 //     |--- |--- | --- | --- |
 //`
   releaseNotes.map((pr)=>{
-  console.log("Map PR")
+  console.log("Map PR" + $myMarkdown)
    myMarkdown = myMarkdown.concat(`| #[${pr.number}](${pr.link}) | ${pr.title} | ${pr.ticketsString} | ${pr.owner} | `)
   })
 //  core.summary
