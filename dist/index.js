@@ -30878,7 +30878,7 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 
   // Write formatted PRs to release notes file
   const releaseNotes = formattedPRs.join('\n')
-  fs.appendFileSync(filePath, releaseNotes);
+  fs.appendFileSync("release_notes.txt", releaseNotes);
   core.summary.addDetails('Release Notes Summary', releaseNotes).write({overwrite: true})
 }
 
