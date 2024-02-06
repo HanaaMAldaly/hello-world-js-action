@@ -30888,7 +30888,9 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
   '- feat: refill cms integration (#[3117](https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3117)) ([OPB-16558](https://cps.jira.agile.vodafone.com/browse/OPB-16558)) - by luis-susaj (05-02-2024 15:19 +00:00)',
   '- fix: changing rewards preprod url (#[3175](https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3175)) - by farah-elsayed (05-02-2024 15:17 +00:00)']
   fs.appendFileSync("release_notes.txt", releaseNotes.join('\n'));
-  core.summary.addDetails('Release Notes Summary', releaseNotes.join('\n')).write({overwrite: true})
+  core.summary
+  addHeading(release_notes[0])
+  .addList(releaseNotes.slice(1,release_notes.length)).write({overwrite: true})
 }
 
 createReleaseNotes();
