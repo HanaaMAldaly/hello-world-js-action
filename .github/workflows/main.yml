@@ -13,5 +13,5 @@ jobs:
           who-to-greet: hanaa
           token: ${{ secrets.TOKEN }}
       - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+        run: ${{ steps.hello.outputs.time }} >> $GITHUB_STEP_SUMMARY
       
