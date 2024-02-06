@@ -30922,7 +30922,7 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 //     |--- |--- | --- | --- |
 //`
   releaseNotes.map((pr)=>{
-  console.log("Map PR" , $myMarkdown)
+  console.log("Map PR" , myMarkdown, pr.title)
    myMarkdown = myMarkdown.concat(`| #[${pr.number}](${pr.link}) | ${pr.title} | ${pr.ticketsString} | ${pr.owner} | `)
   })
 //  core.summary
