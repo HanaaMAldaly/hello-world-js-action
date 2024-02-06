@@ -112,6 +112,17 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
     {data: 'link', header:true}
   ]
 
+  const myMarkdown2 = `## My Header
+
+  ---
+  Some stuff here :green_circle: With a [link](https://github.com)
+
+  ### Maybe Add A table
+
+  | Header1 | Header2 | Header3 |
+  |--- |--- | --- |
+  | value1 | value2 | value |
+`
      let myMarkdown = `## My Header
 
      | PR | Title | Jira ticket | Author |
@@ -131,6 +142,7 @@ core.setOutput("time", releaseNotes.join('\n'))
 
 
 
+core.summary.addRaw(myMarkdown2).write()
     core.summary.addRaw(myMarkdown).write()
 }
 
