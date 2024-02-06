@@ -24440,7 +24440,7 @@ const MockPool = __nccwpck_require__(4028)
 const { matchValue, buildMockOptions } = __nccwpck_require__(2404)
 const { InvalidArgumentError, UndiciError } = __nccwpck_require__(837)
 const Dispatcher = __nccwpck_require__(1773)
-const Pluralizer = __nccwpck_require__(726)
+const Pluralizer = __nccwpck_require__(8678)
 const PendingInterceptorsFormatter = __nccwpck_require__(6502)
 
 class FakeWeakRef {
@@ -25406,7 +25406,7 @@ module.exports = class PendingInterceptorsFormatter {
 
 /***/ }),
 
-/***/ 726:
+/***/ 8678:
 /***/ ((module) => {
 
 "use strict";
@@ -28906,6 +28906,38 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 471:
+/***/ ((module) => {
+
+module.exports = eval("require")("../../helpers/utils");
+
+
+/***/ }),
+
+/***/ 8859:
+/***/ ((module) => {
+
+module.exports = eval("require")("moment");
+
+
+/***/ }),
+
+/***/ 726:
+/***/ ((module) => {
+
+module.exports = eval("require")("yargs/helpers");
+
+
+/***/ }),
+
+/***/ 1667:
+/***/ ((module) => {
+
+module.exports = eval("require")("yargs/yargs");
+
+
+/***/ }),
+
 /***/ 9491:
 /***/ ((module) => {
 
@@ -30790,26 +30822,95 @@ module.exports = parseParams
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+//const core = require('@actions/core')
+//const github = require('@actions/github')
+//
+//  core.summary
+//  .addHeading('Test Results')
+//  .addLink('View staging deployment!', 'https://github.com')
+//  .write()
+//
+//try{
+//    const name = core.getInput('who-to-greet')
+//    console.log(`Hello ${name}!`)
+//    const time = (new Date()).toTimeString()
+//    core.setOutput("time",time)
+//    const payload = JSON.stringify(github.context.payload,undefined,2)
+//    console.log(`The event paylod: ${payload}`)
+//
+//}
+//catch(error){
+//    core.setFailed(error.message)
+//}
+
+const { hideBin } = __nccwpck_require__(726);
+const yargs = __nccwpck_require__(1667);
+const Moment = __nccwpck_require__(8859);
+const fs = __nccwpck_require__(7147);
+const { getOctokit, context } = __nccwpck_require__(5497);
+const utils = __nccwpck_require__(471);
 const core = __nccwpck_require__(5109)
-const github = __nccwpck_require__(5497)
 
-  core.summary
-  .addHeading('Test Results')
-  .addLink('View staging deployment!', 'https://github.com')
-  .write()
+//const yargsOptions = [
+//  { name: 'latestReleaseDate', params: { alias: 'l', string: true } },
+//  { name: 'currentReleaseDate', params: { alias: 'c', string: true } },
+//  { name: 'filePath', params: { alias: 'f', string: true } },
+//  { name: "githubToken", params: { alias: "t", string: true } },
+//  { name: "baseBranch", params: { alias: "b", string: true } },
+//];
+//
+//const setupArgs = (extraArgs) => {
+//  const yargsObj = yargs(hideBin(process.argv));
+//
+//  yargsOptions.forEach((arg) => {
+//    yargsObj.option(arg.name, arg.params);
+//  });
+//
+//  extraArgs?.forEach((arg) => yargsObj.option(arg.name, arg.params));
+//
+//  return yargsObj.help().argv;
+//};
+//
+//const argv = setupArgs();
+//
+//console.log('yargsOptions:');
+//Object.entries(argv)
+//  .filter(([key]) => key !== '_')
+//  .forEach(([key, value]) => {
+//    const formattedKey =
+//      key.length > 1 ? `${key} (${yargsOptions.find((opt) => opt.params.alias === key)?.name || key})` : key;
+//    console.log(`${formattedKey}:`, value);
+//  });
+//
+//const Constants = Object.freeze({
+//  ticketRegex: /https?:\/\/cps\.jira\.agile\.vodafone\.com\/browse\/[a-zA-Z0-9]+-[0-9]+/gim,
+//  ticketFixedPart: 'https://cps.jira.agile.vodafone.com/browse/',
+//});
 
-try{
-    const name = core.getInput('who-to-greet')
-    console.log(`Hello ${name}!`)
-    const time = (new Date()).toTimeString()
-    core.setOutput("time",time)
-    const payload = JSON.stringify(github.context.payload,undefined,2)
-    console.log(`The event paylod: ${payload}`)
-  
+const octokit = getOctokit(argv.githubToken);
+const { owner, repo } = context.repo;
+
+async function createReleaseNotes() {
+
+ const prList = await  octokit.request('GET /repos/{owner}/{repo}/pulls', {
+            owner: "HanaaMAldaly",
+            repo: "hello-world-js-action",
+            state: 'open'
+        })
+
+
+
+  const formattedPRs = prList.map((pr) => {
+    return `${pr.title} (#[${pr.number}](${pr.link})) - by ${pr.owner}`;
+  });
+
+  // Write formatted PRs to release notes file
+  const releaseNotes = formattedPRs.join('\n')
+  fs.appendFileSync(filePath, releaseNotes);
+  core.summary.addDetails('Release Notes Summary', releaseNotes).write({overwrite: true})
 }
-catch(error){
-    core.setFailed(error.message)
-}
+
+createReleaseNotes();
 
 })();
 
