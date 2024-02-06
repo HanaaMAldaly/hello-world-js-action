@@ -30922,8 +30922,9 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 //     |--- |--- | --- | --- |
 //`
   releaseNotes.map((pr)=>{
-  console.log("Map PR" , myMarkdown, pr.title)
+  console.log( pr.title)
    myMarkdown = myMarkdown.concat(`| #[${pr.number}](${pr.link}) | ${pr.title} | ${pr.ticketsString} | ${pr.owner} | `)
+    console.log( myMarkdown)
   })
 //  core.summary
 //  .addHeading(releaseNotes[0],'2')
