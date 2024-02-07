@@ -122,7 +122,7 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 
     | PR | Title | Jira ticket | Author
     |--- |--- | --- | --- |
-`
+    `
 
   releaseNotes.map((pr)=>{
    console.log( pr.title)
