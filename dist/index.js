@@ -30917,8 +30917,10 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 `
 
   releaseNotes.map((pr)=>{
-  console.log( pr.title)
-   releaseNotesSummary = releaseNotesSummary.concat(`| #[${pr.number}](${pr.link}) | ${pr.title} | ${pr.ticketsString} | ${pr.owner} | \n`)
+   console.log( pr.title)
+   const summaryTicket = pr.ticketsString;
+   const ticketsString = summaryTicket!=="" ? ` (${summaryTicket})` : "";
+   releaseNotesSummary = releaseNotesSummary.concat(`| #[${pr.number}](${pr.link}) | ${pr.title} | ${ticketsString} | ${pr.owner} | \n`)
     console.log( releaseNotesSummary)
   })
 //  core.summary
