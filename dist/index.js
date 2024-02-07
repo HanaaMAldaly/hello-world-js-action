@@ -30868,9 +30868,7 @@ async function createReleaseNotes() {
         })
 
 
-const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
-{title: 'two',number:2,link:"wwww",owner:"hanaa"},
-{title: 'three',number:3,link:"wwww",owner:"hanaa"}]
+const prList =[]
 
   const formattedPRs = prList.map((pr) => {
     return `${pr.title} (#[${pr.number}](${pr.link})) - by ${pr.owner}`;
@@ -30934,7 +30932,9 @@ core.setOutput("time", releaseNotes.join('\n'))
 
 
 //core.summary.addRaw(myMarkdown2).write()
-    core.summary.addRaw(releaseNotesSummary).write()
+    if(prList.length !== 0){
+       core.summary.addRaw(releaseNotesSummary).write()
+     }
 }
 
 createReleaseNotes();
