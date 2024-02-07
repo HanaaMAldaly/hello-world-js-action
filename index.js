@@ -76,7 +76,9 @@ async function createReleaseNotes() {
         })
 
 
-const prList =[]
+const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
+{title: 'two',number:2,link:"wwww",owner:"hanaa"},
+{title: 'three',number:3,link:"wwww",owner:"hanaa"}]
 
   const formattedPRs = prList.map((pr) => {
     return `${pr.title} (#[${pr.number}](${pr.link})) - by ${pr.owner}`;
