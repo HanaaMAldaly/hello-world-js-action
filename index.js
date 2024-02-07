@@ -98,7 +98,7 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
     number:3678,
     link:'https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3117',
     owner: 'hassan-mostafa2',
-    ticketsString:'[OPB-16885](https://cps.jira.agile.vodafone.com/browse/OPB-16985)'
+    ticketsString:''
     }]
   //(#[3179](https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3179)) ([OPB-16885](https://cps.jira.agile.vodafone.com/browse/OPB-16885)) - by marwan-salem (05-02-2024 16:25 +00:00)',
 //  '- feat: Add general error boundary  (#[3104](https://github.vodafone.com/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/pull/3104)) ([OPB-17039](https://cps.jira.agile.vodafone.com/browse/OPB-17039)) - by hassan-mostafa2 (05-02-2024 16:22 +00:00)',
