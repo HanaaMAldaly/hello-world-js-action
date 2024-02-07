@@ -30912,9 +30912,9 @@ const prList =[{title: 'one',number:1,link:"wwww",owner:"hanaa"},
 
   let releaseNotesSummary = `## Release Notes
 
-  | PR | Title | Jira ticket | Author
-  |--- |--- | --- | --- |
-`
+    | PR | Title | Jira ticket | Author
+    |--- |--- | --- | --- |
+  `
 
   releaseNotes.map((pr)=>{
    console.log( pr.title)
