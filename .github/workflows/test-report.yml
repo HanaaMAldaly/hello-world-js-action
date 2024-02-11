@@ -16,5 +16,5 @@ jobs:
         uses: dorny/test-reporter@v1
         with:
           name: JEST Tests            # Name of the check run which will be created
-          path: ./test-result.xml    # Path to test results
+          path: .github/workflows/test-result.xml    # Path to test results
           reporter: jest-junit        # Format of test results
