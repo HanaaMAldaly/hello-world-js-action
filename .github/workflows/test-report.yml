@@ -15,7 +15,7 @@ jobs:
       - uses: actions/upload-artifact@v3  # upload test results
         with:
           name: test-results
-          path: .github/workflows/test-result.xml
+          path: .github/workflows/test-report.xml
       - name: Test Report
         uses: dorny/test-reporter@v1
         with:
