@@ -15,10 +15,10 @@ jobs:
       - uses: actions/upload-artifact@v3  # upload test results
         with:
           name: test-results
-          path: .github/workflows/test-report.xml
+          path: .github/test-report.xml
       - name: Test Report
         uses: dorny/test-reporter@v1
         with:
           name: JEST Tests            # Name of the check run which will be created
-          path: .github/workflows/test-result.xml    # Path to test results
-          reporter: java-junit        # Format of test results
+          path: .github/test-result.xml    # Path to test results
+          reporter: jest-junit        # Format of test results
