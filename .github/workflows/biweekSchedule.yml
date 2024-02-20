@@ -4,7 +4,7 @@ on:
         outputs:
           release_week:
               description: "Week"
-              value: ${{ jobs.release_week.outputs.release_week }}
+              value: ${{ jobs.week-check.outputs.release_week }}
 
 jobs:
   week-check:
