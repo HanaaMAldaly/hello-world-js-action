@@ -2,7 +2,9 @@ name: check_release_week
 on:
     workflow_call:
         outputs:
-          release_week: ${{ steps.release_week.outputs.release_week }}
+          release_week:
+              description: "Week"
+              value: ${{ steps.release_week.outputs.release_week }}
 
 jobs:
   week-check:
