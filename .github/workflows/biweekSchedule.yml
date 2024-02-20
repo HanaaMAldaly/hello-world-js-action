@@ -4,7 +4,7 @@ on:
 
 jobs:
   week-check:
-    runs-on: generic
+    runs-on: ubuntu-latest
     steps:
       - name: Check if release week
         id: release_week
