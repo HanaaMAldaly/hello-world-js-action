@@ -25,3 +25,7 @@ jobs:
                 echo "week: $weeks - Release is not this week. Skipping release activities…"
                 echo "release_week=false" >> $GITHUB_OUTPUT
             fi
+    outputs:
+      release_week: ${{ steps.release_week.outputs.release_week }}
+           
+            
