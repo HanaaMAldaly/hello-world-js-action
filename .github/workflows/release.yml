@@ -10,7 +10,7 @@ jobs:
   android-production-release:
     runs-on: ubuntu-latest
     needs: [week-check]
-    # if: ${{ needs.week-check.outputs.release_week == 'true' }}
+    if: ${{ needs.week-check.outputs.release_week == 'true' }}
     steps: 
       - name: Run Script
         run: |
