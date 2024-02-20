@@ -6,7 +6,25 @@ on:
     - cron: 0 3 * * 1
 jobs:
   week-check:
-    uses: HanaaMAldaly/hello-world-js-action/.github/workflows/biweekSchedule.yml@main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if release week
+        id: release_week
+        run: |
+            #!/bin/bash
+            # Calculate the number of weeks since the reference date (Mon Jan 1st, 2024)
+            # note: this formatting is only for ubuntu
+            weeks=$(( ($(date +%V | sed 's/^0*//' ) - $(date -d '2024-01-01' +%V | sed 's/^0*//')) ))
+            # If the number of fortnights since the reference date is odd, it's an "on" week
+            if ((weeks % 2 == 1)); then
+                echo "week: $weeks - Release is this week. Continuing release activities…"
+                echo "release_week=true" >> $GITHUB_OUTPUT
+            else
+                echo "week: $weeks - Release is not this week. Skipping release activities…"
+                echo "release_week=false" >> $GITHUB_OUTPUT
+            fi
+    outputs:
+      release_week: ${{ steps.release_week.outputs.release_week }}
   android-production-release:
     runs-on: ubuntu-latest
     needs: [week-check]
