@@ -2,13 +2,13 @@ name: check_release_week
 on:
     workflow_call:
         outputs:
-          release_week:
-              description: "Week"
-              value: ${{ jobs.week-check.outputs.release_week }}
+            release_week:
+                description: "Week Number"
+                value: ${{ jobs.week-check.outputs.release_week }}
 
 jobs:
   week-check:
-    runs-on: ubuntu-latest
+    runs-on: generic
     steps:
       - name: Check if release week
         id: release_week
@@ -27,5 +27,4 @@ jobs:
             fi
     outputs:
       release_week: ${{ steps.release_week.outputs.release_week }}
-           
-            
+      
