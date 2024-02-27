@@ -1,0 +1,24 @@
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  checks: write
+jobs:
+  build-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3     # checkout the repo
+      - uses: actions/upload-artifact@v3  # upload test results
+        with:
+          name: test-results
+          path: .github/test-report.xml
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        with:
+          name: JEST Tests            # Name of the check run which will be created
+          path: .github/*.xml    # Path to test results
+          reporter: jest-junit        # Format of test results
