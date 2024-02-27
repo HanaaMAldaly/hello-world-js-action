@@ -1,21 +1,86 @@
-on: [push]
+name: publish-apps-beta
+on:
+  # Scheduled OneApp Beta apps publish
+  # schedule:
+  # 7am - Fridays -> Beta
+  # - cron: 0 7 * * 5
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: "Specify platform"
+        required: true
+        type: choice
+        default: all
+        options:
+          - all
+          - ios
+          - android
+      tenant:
+        description: "Specify tenant"
+        required: true
+        type: choice
+        default: all
+        options:
+          - all
+          - al
+          - ie
+          - pt
+      configuration:
+        description: "Specify configuration"
+        required: true
+        type: choice
+        default: stage
+        options:
+          - stage
+          - release
+      distribution:
+        description: "Specify distribution type"
+        required: true
+        type: choice
+        default: regression
+        options:
+          - internal
+          - regression
+          - external
+      environment:
+        description: "Specify environment type"
+        required: true
+        type: choice
+        default: stage
+        options:
+          - stage
+          - production
+
 jobs:
-  hello-world-job:
-    runs-on: ubuntu-latest
-    name: job to say hello world
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Hello world action step
-        uses: ./
-        id: hello
-        with:
-          who-to-greet: hanaa
-          token: ${{ secrets.TOKEN }}
-      - name: Get the output time
-        shell: bash
-        run: |
-          RELEASE_NOTES_FILE="releasenotes.txt"
-          # Generate Release notes file
-          # cat "./releasenotes.txt" >> $GITHUB_STEP_SUMMARY
-      
+  beta-release:
+    uses: ./.github/workflows/betaCommonWorkflow.yml
+    with:
+      tenant: ${{inputs.tenant}}
+      platform: ${{inputs.platform}}
+      configuration: ${{ inputs.configuration }}
+      base_branch: "branch"
+      distribution: ${{ inputs.distribution }}
+      environment: ${{ inputs.environment }}
+
+#on: [push]
+#jobs:
+#  hello-world-job:
+#    runs-on: ubuntu-latest
+#    name: job to say hello world
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#      - name: Hello world action step
+#        uses: ./
+#        id: hello
+#        with:
+#          who-to-greet: hanaa
+#          token: ${{ secrets.TOKEN }}
+#      - name: Get the output time
+#        shell: bash
+#        run: |
+#          RELEASE_NOTES_FILE="releasenotes.txt"
+#          # Generate Release notes file
+#          # cat "./releasenotes.txt" >> $GITHUB_STEP_SUMMARY
+#
