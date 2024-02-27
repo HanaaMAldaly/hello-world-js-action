@@ -1,0 +1,33 @@
+name: beta-common-workflow
+
+on:
+    workflow_call:
+      inputs:
+        platform:
+          required: true
+          type: string
+        tenant:
+          required: true
+          type: string
+        configuration:
+          required: true
+          type: string
+        base_branch:
+          required: true
+          type: string
+        distribution:
+          required: true
+          type: string
+        environment:
+          required: true
+          type: string
+
+jobs:
+  build-publish:
+    environment: ${{ format('{0}_{1}', inputs.tenant, inputs.environment) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Delete application from SeeTest cloud
+        run: |
+          echo ${{ format('{0}_{1}', inputs.tenant, inputs.environment) }}

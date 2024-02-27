@@ -1,0 +1,68 @@
+name: publish-apps-beta
+on:
+  # Scheduled OneApp Beta apps publish
+  # schedule:
+  # 7am - Fridays -> Beta
+  # - cron: 0 7 * * 5
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: "Specify platform"
+        required: true
+        type: choice
+        default: all
+        options:
+          - all
+          - ios
+          - android
+      tenant:
+        description: "Specify tenant"
+        required: true
+        type: choice
+        default: all
+        options:
+          - all
+          - al
+          - ie
+          - pt
+      configuration:
+        description: "Specify configuration"
+        required: true
+        type: choice
+        default: stage
+        options:
+          - stage
+          - release
+      distribution:
+        description: "Specify distribution type"
+        required: true
+        type: choice
+        default: regression
+        options:
+          - internal
+          - regression
+          - external
+      environment:
+        description: "Specify environment type"
+        required: true
+        type: choice
+        default: stage
+        options:
+          - stage
+          - production
+
+env:
+  BUILD_NUMBER: ${{github.run_number}}
+  BRANCH_NAME: ${{ github.ref }}
+
+jobs:
+  beta-release:
+    uses: ./.github/workflows/betaCommonWorkflow.yml
+    with:
+      tenant: ${{inputs.tenant}}
+      platform: ${{inputs.platform}}
+      configuration: ${{ inputs.configuration }}
+      base_branch: "branch"
+      distribution: ${{ inputs.distribution }}
+      environment: ${{ inputs.environment }}
