@@ -52,10 +52,6 @@ on:
           - stage
           - production
 
-env:
-  BUILD_NUMBER: ${{github.run_number}}
-  BRANCH_NAME: ${{ github.ref }}
-
 jobs:
   beta-release:
     uses: ./.github/workflows/betaCommonWorkflow.yml
