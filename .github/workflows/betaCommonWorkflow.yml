@@ -31,3 +31,12 @@ jobs:
       - name: Delete application from SeeTest cloud
         run: |
           echo ${{ format('{0}_{1}', inputs.tenant, inputs.environment) }}
+      - name: Setup .env file
+        uses: ./.github/show_env
+        with:
+          PLATFORM: ${{inputs.platform}}
+          ENVIRONMENT: ${{ inputs.environment }}
+      - name: Setup .env file without environment
+        uses: ./.github/show_env
+        with:
+          PLATFORM: ${{inputs.platform}}
