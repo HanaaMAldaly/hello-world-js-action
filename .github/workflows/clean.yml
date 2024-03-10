@@ -1,5 +1,5 @@
 on:
- [push]
+ [pull-request]
 jobs:
   clean_workflow_runners:
     runs-on: ubuntu-latest
