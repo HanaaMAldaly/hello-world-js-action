@@ -1,15 +1,14 @@
 name: file1
 on:
-  workflow-dispatch:
+  workflow_dispatch:
     inputs:
       platform:
         description: Platform
         type: String
-  jobs:
-    first_job:
+jobs:
+  first_job:
       runs-on: ubuntu-latest
       steps:
-        step_one:
           - name: Run first job
             run: |
               echo "The platform is ${{ inputs.platform }}"
