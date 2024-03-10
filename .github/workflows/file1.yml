@@ -17,6 +17,6 @@ jobs:
         with:
           input1: ${{ inputs.platform }}
   third_job:
-    uses: HanaaMAldaly/hello-world-js-action/.github/C_Action
+    uses: HanaaMAldaly/hello-world-js-action/.github/C_Action@main
     with:
       platform: ${{ inputs.platform }}
