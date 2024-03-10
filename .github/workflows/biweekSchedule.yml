@@ -24,7 +24,7 @@ jobs:
         run: |
           #!/bin/bash
           # Get release type
-          echo "${{ toJSON(github.event.inputs) }}"
+          echo "${{ toJSON(github) }}"
           release_type=${{ github.event.inputs.release_type }}
           # Calculate the number of weeks since the reference date (Mon Jan 1st, 2024)
           # note: this formatting is only for ubuntu
