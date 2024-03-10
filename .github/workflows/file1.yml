@@ -17,4 +17,4 @@ jobs:
           - name: Run file2
             uses: .github/workflows/file2.yml@main
             with:
-              input1: {{ inputs.platform }}
+              input1: ${{ inputs.platform }}
