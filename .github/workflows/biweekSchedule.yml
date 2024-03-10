@@ -23,7 +23,7 @@ jobs:
           release_type=${{ github.event.inputs.release_type }}
           # Calculate the number of weeks since the reference date (Mon Jan 1st, 2024)
           # note: this formatting is only for ubuntu
-          weeks=10
+          weeks=11
           # If the number of fortnights since the reference date is odd and it's production build, then it's an "on" week
           # If the number of fortnights since the reference date is even and it's stage build, then it's an "on" week
           
