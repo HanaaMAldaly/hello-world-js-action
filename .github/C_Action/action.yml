@@ -1,14 +1,13 @@
 name: file3
-on:
-  workflow_call:
-    inputs:
-      platform:
-        description: Platform
-        type: Sting
-jobs:
-  first_job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: print
-        run: |
-          echo "${{ inputs.platform }}"
+description: Setup application environment for OneApp
+inputs:
+ platform:
+   description: Platform
+
+runs:
+  using: "composite"
+  steps:
+    - name: print
+      shell: bash
+      run: |
+       echo "${{ inputs.platform }}"
