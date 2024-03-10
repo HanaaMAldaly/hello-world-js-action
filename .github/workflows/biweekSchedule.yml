@@ -24,8 +24,8 @@ jobs:
         run: |
           #!/bin/bash
           # Get release type
-          echo "${{ toJSON(github) }}"
-          release_type=${{ github.event.inputs.release_type }}
+          echo "${{ toJSON(inputs) }}"
+          release_type=${{ inputs.release_type }}
           # Calculate the number of weeks since the reference date (Mon Jan 1st, 2024)
           # note: this formatting is only for ubuntu
           weeks=$(( ($(date +%V | sed 's/^0*//' ) - $(date -d '2024-01-01' +%V | sed 's/^0*//')) ))
