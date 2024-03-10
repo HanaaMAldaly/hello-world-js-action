@@ -17,6 +17,7 @@ jobs:
         with:
           input1: ${{ inputs.platform }}
   third_job:
-    uses: ./.github/C_Action
-    with:
-      platform: ${{ inputs.platform }}
+    steps:
+      uses: ./.github/C_Action
+      with:
+        platform: ${{ inputs.platform }}
