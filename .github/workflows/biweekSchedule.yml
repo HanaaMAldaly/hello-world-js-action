@@ -1,12 +1,16 @@
 name: check_release_week
 on:
   workflow_call:
-   inputs:
-    release_type:
+    inputs:
+      platform:
+        description: Specify platform
+        required: true
+        type: string
+      release_type:
         description: Specify Release type (production, stage)
         required: true
         type: string
-    outputs:
+      outputs:
       release_week:
         description: "Week Number"
         value: ${{ jobs.week-check.outputs.release_week }}
