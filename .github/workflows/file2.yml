@@ -5,7 +5,7 @@ on:
       input1:
         description: First input
         type: String
-  jobs:
+jobs:
     first_job:
       runs-on: ubuntu-latest
       steps:
