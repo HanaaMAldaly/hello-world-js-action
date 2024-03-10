@@ -10,7 +10,7 @@ on:
         description: Specify Release type (production, stage)
         required: true
         type: string
-      outputs:
+    outputs:
       release_week:
         description: "Week Number"
         value: ${{ jobs.week-check.outputs.release_week }}
