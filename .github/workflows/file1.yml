@@ -13,6 +13,6 @@ jobs:
             run: |
               echo "The platform is ${{ inputs.platform }}"
   second_job:
-        uses: ./.github/workflows/file2.yml
+        uses:  HanaaMAldaly/hello-world-js-action/.github/workflows/file2.yml
         with:
           input1: ${{ inputs.platform }}
