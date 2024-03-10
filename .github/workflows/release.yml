@@ -8,7 +8,7 @@ jobs:
   week-check:
      uses: HanaaMAldaly/hello-world-js-action/.github/workflows/biweekSchedule.yml@main
      with:
-       release_type: "stage"
+       release_type: "production"
   android-production-release:
     runs-on: ubuntu-latest
     needs: [week-check]
