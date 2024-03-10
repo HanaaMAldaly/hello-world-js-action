@@ -13,3 +13,7 @@ on:
           - name: Run first job
             run: |
               echo "The platform is ${{ inputs.platform }}"
+          - name: Run file2
+            use: .github/workflows/file2.yml
+            with:
+              input1: {{ inputs.platform }}

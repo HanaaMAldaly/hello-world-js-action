@@ -1,0 +1,14 @@
+name: file2
+on:
+  workflow_call:
+    inputs:
+      input1:
+        description: First input
+        type: String
+  jobs:
+    first_job:
+      runs-on: ubuntu-latest
+      steps:
+        - name: first input
+          run: |
+            echo " your first input is ${{ inputs.input1 }}"
