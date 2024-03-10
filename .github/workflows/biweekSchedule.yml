@@ -27,7 +27,7 @@ jobs:
           # If the number of fortnights since the reference date is odd and it's production build, then it's an "on" week
           # If the number of fortnights since the reference date is even and it's stage build, then it's an "on" week
           
-          echo "$$release_type"
+          echo " release type is $release_type"
           if ([ $((weeks % 2)) == 1 ] && [ "$release_type" == "production" ]) || ([ $((weeks % 2)) == 0 ] && [ "$release_type" == "stage" ]); then
              echo "week: $weeks - Release is this week. Continuing release activities…"
               echo "release_week=true" >> $GITHUB_OUTPUT
