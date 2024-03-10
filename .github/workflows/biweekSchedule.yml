@@ -2,10 +2,6 @@ name: check_release_week
 on:
   workflow_call:
     inputs:
-      platform:
-        description: Specify platform
-        required: true
-        type: string
       release_type:
         description: Specify Release type (production, stage)
         required: true
@@ -17,14 +13,13 @@ on:
 
 jobs:
   week-check:
-    runs-on: ubuntu-latest
+    runs-on: generic
     steps:
       - name: Check if release week
         id: release_week
         run: |
           #!/bin/bash
           # Get release type
-          echo "${{ toJSON(inputs) }}"
           release_type=${{ inputs.release_type }}
           # Calculate the number of weeks since the reference date (Mon Jan 1st, 2024)
           # note: this formatting is only for ubuntu
@@ -32,9 +27,8 @@ jobs:
           # If the number of fortnights since the reference date is odd and it's production build, then it's an "on" week
           # If the number of fortnights since the reference date is even and it's stage build, then it's an "on" week
           
-          echo " release type is $release_type"
           if ([ $((weeks % 2)) == 1 ] && [ "$release_type" == "production" ]) || ([ $((weeks % 2)) == 0 ] && [ "$release_type" == "stage" ]); then
-             echo "week: $weeks - Release is this week. Continuing release activities…"
+              echo "week: $weeks - Release is this week. Continuing release activities…"
               echo "release_week=true" >> $GITHUB_OUTPUT
           else
               echo "week: $weeks - Release is not this week. Skipping release activities…"
