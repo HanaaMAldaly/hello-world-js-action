@@ -7,7 +7,7 @@ on:
         type: string
     outputs:
       workflowVar:
-        description: Output
+
         value: ${{ jobs.first_job.outputs.workflowVar }}
 jobs:
     first_job:
