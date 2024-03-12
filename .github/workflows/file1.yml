@@ -18,7 +18,7 @@ jobs:
           input1: ${{ inputs.platform }}
   third_job:
     runs-on: ubuntu-latest
-    id: third_job
+    id: third_job_id
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/C_Action
@@ -34,4 +34,4 @@ jobs:
     steps:
       - name: print outpuy
         run: |
-          echo "${{ steps.third_job.output.out }}"
+          echo "${{ steps.third_job_id.output.out }}"
