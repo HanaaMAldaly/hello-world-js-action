@@ -8,12 +8,12 @@ on:
     outputs:
       workflowVar:
         description: Output
-        value: ${{ jobs.first_job.outputs.out }}
+        value: ${{ jobs.first_job.outputs.workflowVar }}
 jobs:
     first_job:
       runs-on: ubuntu-latest
       outputs:
-        out: ${{ steps.step_id.outputs.workflowVar}}
+        workflowVar: ${{ steps.step_id.outputs.workflowVar}}
       steps:
         - name: first input
           id: step_id
