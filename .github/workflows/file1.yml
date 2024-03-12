@@ -35,7 +35,8 @@ jobs:
 
   output_job:
     runs-on: ubuntu-latest
+    needs: [third_job]
     steps:
       - name: print output
         run: |
-          echo "${{ jobs.third_job.outputs.out1 }}"
+          echo "${{ needs.third_job.outputs.out1 }}"
