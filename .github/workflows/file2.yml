@@ -6,7 +6,8 @@ on:
         description: First input
         type: string
     outputs:
-      workflowVar: ${{ jobs.first_job.outputs.out }}
+      workflowVar:
+        value: ${{ jobs.first_job.outputs.out }}
 jobs:
     first_job:
       runs-on: ubuntu-latest
