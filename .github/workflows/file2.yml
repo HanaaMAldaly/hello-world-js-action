@@ -19,4 +19,4 @@ jobs:
           id: step_id
           run: |
             echo " your first input is ${{ inputs.input1 }}"
-            echo "workflowVar = this is file2" >>$GITHUB_OUTPUT
+            echo "workflowVar = this is file2" >> $GITHUB_OUTPUT
