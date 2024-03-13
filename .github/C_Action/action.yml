@@ -3,11 +3,16 @@ description: Setup application environment for OneApp
 inputs:
  platform:
    description: Platform
+outputs:
+  out:
+    value: ${{steps.step_id.outputs.out}}
 
 runs:
   using: "composite"
   steps:
     - name: print
+      id: step_id
       shell: bash
       run: |
        echo "${{ inputs.platform }}"
+       echo "out=composite action" >> $GITHUB_OUTPUT

@@ -24,11 +24,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/C_Action
+        id: custom
         with:
           platform: ${{ inputs.platform }}
       - name: Run
         id: third_step_id
         run: |
+          echo "${{ steps.custom.output.out}}"
           echo "${{needs.second_job.outputs.workflowVar}}"
           echo "out= this is 3rd step output" >> $GITHUB_OUTPUT
       - name: Print
