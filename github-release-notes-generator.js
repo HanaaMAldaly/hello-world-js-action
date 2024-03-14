@@ -1,101 +1,104 @@
-// const { hideBin } = require("yargs/helpers");
-// const yargs = require("yargs/yargs");
-// const { getOctokit, context } = require("@actions/github");
-// const utils = require("./utils");
+process.env.GITHUB_REPOSITORY = 'VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp'
 
-// const yargsOptions = [
-//   { name: "currentTag", params: { alias: "t", string: true } },
-//   { name: "githubToken", params: { alias: "g", string: true } },
-//   { name: "prerelease", params: { alias: "p", boolean: true } },
-//   { name: "platform", params: { alias: "o", string: true } },
-//   { name: "tenant", params: { alias: "m", string: true } },
-//   { name: "baseBranch", params: { alias: "b", string: true } },
-// ];
+const { hideBin } = require('yargs/helpers');
+const yargs = require('yargs/yargs');
+const Moment = require("moment");
+const fs = require('fs');
+const github = require('@actions/github')
+const utils = require('./utils');
+const core = require('@actions/core')
+const { Octokit } = require("@octokit/rest");
 
-// const setupArgs = (extraArgs) => {
-//   const yargsObj = yargs(hideBin(process.argv));
 
-//   yargsOptions.forEach(arg => {
-//     yargsObj.option(arg.name, arg.params);
-//   });
+const { getOctokit, context } = require("@actions/github");
+const yargsOptions = [
+  { name: 'latestReleaseDate', params: { alias: 'l', string: true } },
+  { name: 'currentReleaseDate', params: { alias: 'c', string: true } },
+  { name: 'filePath', params: { alias: 'f', string: true } },
+  { name: "githubToken", params: { alias: "t", string: true } },
+  { name: "baseBranch", params: { alias: "b", string: true } },
+];
 
-//   extraArgs?.forEach(arg => yargsObj.option(arg.name, arg.params));
+const setupArgs = (extraArgs) => {
+  const yargsObj = yargs(hideBin(process.argv));
 
-//   return yargsObj.help().argv;
-// };
+  yargsOptions.forEach((arg) => {
+    yargsObj.option(arg.name, arg.params);
+  });
 
-// const argv = setupArgs();
+  extraArgs?.forEach((arg) => yargsObj.option(arg.name, arg.params));
 
-// console.log('yargsOptions:');
-// Object.entries(argv)
-//   .filter(([key]) => key !== '_')
-//   .forEach(([key, value]) => {
-//     const formattedKey = key.length > 1 ? `${key} (${yargsOptions.find(opt => opt.params.alias === key)?.name || key})` : key;
-//     console.log(`${formattedKey}:`, value);
-//   });
+  return yargsObj.help().argv;
+};
 
-// const octokit = getOctokit(argv.githubToken);
-// const { owner, repo } = context.repo;
+const argv = setupArgs();
 
-// async function createRelease(currentTag, tenant, platform, prerelease, baseBranch) {
-//   try {
-//     // List tags
-//     const { data: tagsList } = await octokit.rest.repos.listTags({
-//       owner,
-//       repo,
-//       per_page: 100,
-//     });
+console.log('yargsOptions:');
+Object.entries(argv)
+  .filter(([key]) => key !== '_')
+  .forEach(([key, value]) => {
+    const formattedKey =
+      key.length > 1 ? `${key} (${yargsOptions.find((opt) => opt.params.alias === key)?.name || key})` : key;
+    console.log(`${formattedKey}:`, value);
+  });
 
-//     // Filter tags
-//     const filteredTags = tagsList.filter(item =>
-//       item.name.includes(`${tenant}-${platform}`) &&
-//       item.name.includes("beta")
-//     );
+const Constants = Object.freeze({
+  ticketRegex: /https?:\/\/cps\.jira\.agile\.vodafone\.com\/browse\/[a-zA-Z0-9]+-[0-9]+/gim,
+  ticketFixedPart: 'https://cps.jira.agile.vodafone.com/browse/',
+});
 
-//     console.log("filteredTags:", filteredTags);
+const octokit = new Octokit({
+    baseUrl: "https://github.vodafone.com/api/v3", // Replace with your enterprise URL
+    auth: argv.githubToken,
+  });
+  const { owner, repo } = context.repo;
+  
+async function createReleaseNotes(latestReleaseDate, currentReleaseDate, filePath, baseBranch) {
+     
+    if (
+        Moment("2024-03-12T11:31:21Z").isBetween(
+          Moment("2024-03-01T15:44:15+02:00"),
+          Moment("2024-03-12T13:31:20+02:00"),
+          undefined,
+          '(]',
+        )){
+            console.log("Rigggggggggt")
+        }
+  const prList = await utils.getRepoPullRequests(
+    octokit,
+   owner,
+        repo,
+    latestReleaseDate,
+    currentReleaseDate,
+    baseBranch
+  );
 
-//     const latestTag = filteredTags?.[0]?.name;
+  // Format the release notes into a table to show them into workflow summary.
+  let releaseNotesSummary = `## Release Notes
 
-//     console.log("latestTag:", latestTag);
+  | PR | Title | Jira ticket | Author
+  |--- |--- | --- | --- |
+`
+  const formattedPRs = prList.map((pr) => {
+    const mergedAtDate = Moment(pr.merged_at).format("DD-MM-YYYY HH:mm Z");
+    const ticketsLinks = Array.from(
+        new Set(pr.body?.match(Constants.ticketRegex))
+      );
+    const tickets = ticketsLinks?.map(element => {
+        return `[${element.replace(Constants.ticketFixedPart, "")}](${element})`
+    });
+    // concat the ticket and it's link together. ex [OPB-16885](https://cps.jira.agile.vodafone.com/browse/OPB-16885)
+    const ticketHyperLink = tickets.length ? `${tickets.join(",")}` : "";
+    // format the ticket to add parenthesis around.
+    const ticketsString = ticketHyperLink!=="" ? ` (${ticketHyperLink})` : "";
+    // replace | with space - handle special chars in md table
+    const escapedTitle = pr.title.replace(/\|/g, "\\|");
+    // assemble releaseNotesSummary text
+    releaseNotesSummary = releaseNotesSummary.concat(` ${escapedTitle} \n`)
+    return `${pr.title} (#[${pr.number}](${pr.link}))${ticketsString} - by ${pr.owner} (${mergedAtDate})`;
+  });
+  console.log(releaseNotesSummary)
 
-//      // Create a new release
-//         await octokit.rest.repos.createRelease({
-//           owner,
-//           repo,
-//           tag_name: currentTag,
-//           target_commitish: baseBranch,
-//           name: currentTag,
-//           body: "",
-//           generate_release_notes: false,
-//           draft: false,
-//           prerelease: prerelease,
-//         });
+}
 
-//     // Create a new release
-//     const {release_id} = await octokit.rest.repos.createRelease({
-//       owner,
-//       repo,
-//       tag_name: currentTag,
-//       target_commitish: baseBranch,
-//       name: currentTag,
-//       body: newChangeLogData,
-//       generate_release_notes: false,
-//       draft: false,
-//       prerelease: prerelease,
-//     });
-
-//  const newChangeLogData = await utils.createGithubReleaseNotes(octokit, owner, repo, currentTag, latestTag, baseBranch);
-
-//     octokit.rest.repos.updateRelease({
-//       owner,
-//       repo,
-//       release_id,
-//       body:newChangeLogData
-//     });
-//   } catch (error) {
-//     console.error("Error creating GitHub Release:", error);
-//   }
-// }
-
-// createRelease(argv.currentTag, argv.tenant, argv.platform, argv.prerelease, argv.baseBranch);
-console.log("hi")
+createReleaseNotes(argv.latestReleaseDate, argv.currentReleaseDate, argv.filePath, argv.baseBranch);
