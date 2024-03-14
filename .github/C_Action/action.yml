@@ -36,7 +36,6 @@ runs:
       shell: bash
       run: |
         # Get current and previous run timestamps
-        cd oneapp_repo
         sha=5afc3b93a2c29e36651e12c38b30594302c8d8d7
         currentShaResponse=curl -H "Authorization: Bearer ${{ env.ONEPLATFORM_GITHUB_TOKEN }}" \
                 https://github.vodafone.com/api/v3/repos/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/commits/$sha
