@@ -37,7 +37,7 @@ runs:
       run: |
         # Get current and previous run timestamps
         sha=5afc3b93a2c29e36651e12c38b30594302c8d8d7
-                currentShaResponse=$(curl -s -H "Authorization: Bearer ${{ secrets.ONEPLATFORM_GITHUB_TOKEN }}" \
+                currentShaResponse=$(curl -s -H "Authorization: Bearer ${{ env.ONEPLATFORM_GITHUB_TOKEN }}" \
                 https://github.vodafone.com/api/v3/repos/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/commits/$sha)
         CURRENT_RUN_DATE=$(echo "$response" | jq -r 'map(select(.merged_at != null and .merge_commit_sha == "'"$sh"'" )) | .[0].merged_at')
         echo "CURRENT_RUN_DATE=$CURRENT_RUN_DATE" >> $GITHUB_ENV
