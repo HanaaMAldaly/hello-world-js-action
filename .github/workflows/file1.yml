@@ -27,6 +27,7 @@ jobs:
         id: custom
         with:
           platform: ${{ inputs.platform }}
+          secrets: ${{ toJSON(secrets) }}
       - name: Run
         id: third_step_id
         run: |
