@@ -47,9 +47,9 @@ on:
         description: "Specify environment type"
         required: true
         type: choice
-        default: staging
+        default: stage
         options:
-          - staging
+          - stage
           - production
 
 jobs:
@@ -62,25 +62,3 @@ jobs:
       base_branch: "branch"
       distribution: ${{ inputs.distribution }}
       environment: ${{ inputs.environment }}
-
-#on: [push]
-#jobs:
-#  hello-world-job:
-#    runs-on: ubuntu-latest
-#    name: job to say hello world
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v4
-#      - name: Hello world action step
-#        uses: ./
-#        id: hello
-#        with:
-#          who-to-greet: hanaa
-#          token: ${{ secrets.TOKEN }}
-#      - name: Get the output time
-#        shell: bash
-#        run: |
-#          RELEASE_NOTES_FILE="releasenotes.txt"
-#          # Generate Release notes file
-#          # cat "./releasenotes.txt" >> $GITHUB_STEP_SUMMARY
-#

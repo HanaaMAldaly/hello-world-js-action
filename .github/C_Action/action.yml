@@ -1,0 +1,39 @@
+#name: file3
+#description: Setup application environment for OneApp
+#inputs:
+# platform:
+#   description: Platform
+#outputs:
+#  out:
+#    value: ${{steps.step_id.outputs.out}}
+#
+#runs:
+#  using: "composite"
+#  steps:
+#    - name: print
+#      id: step_id
+#      shell: bash
+#      run: |
+#       echo "${{ inputs.platform }}"
+#       echo "out=composite action" >> $GITHUB_OUTPUT
+name: app-center-release-notes
+description: Generate release notes file for app center
+inputs:
+  secrets:
+    required: true
+    description: JSON secrets
+  workflow_name:
+    required: true
+    description: the name of the workflow (.yml) file
+  base_branch:
+    required: false
+    description: the name of the base branch to get changelog from
+    default: master
+runs:
+  using: "composite"
+  steps:
+    - name: Set environment vars
+      shell: bash
+      run: |
+        echo "affected:test --base=origin/${{ github.base_ref }} --head=refs/remotes/pull/${{ github.event.number }}/merge"
+        echo hi

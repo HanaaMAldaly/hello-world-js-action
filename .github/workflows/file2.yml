@@ -1,0 +1,27 @@
+name: file2
+on:
+  workflow_call:
+    inputs:
+      input1:
+        description: First input
+        type: string
+    outputs:
+      workflowVar:
+
+        value: ${{ jobs.first_job.outputs.workflowVar }}
+jobs:
+    first_job:
+      runs-on: ubuntu-latest
+      outputs:
+        workflowVar: ${{ steps.step_id.outputs.workflowVar}}
+      steps:
+        - name: first input
+          id: step_id
+          run: |
+            echo " your first input is ${{ inputs.input1 }}"
+            echo "out= this is 3rd step output" >> $GITHUB_OUTPUT
+            echo "workflowVar= this is file2" >> $GITHUB_OUTPUT
+        - name: print
+          run: |
+            echo "${{ steps.step_id.outputs.workflowVar}}"
+            echo "${{ steps.step_id.outputs.out}}"

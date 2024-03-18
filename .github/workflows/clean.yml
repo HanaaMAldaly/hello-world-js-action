@@ -1,16 +1,16 @@
-on:
- [push]
-jobs:
-  clean_workflow_runners:
-    runs-on: ubuntu-latest
-    permissions: write-all
-    name: Clean workflow runners
-    steps:
-      - name: call clean task
-        uses: HanaaMAldaly/clean-workflow-runners@main
-        with:
-          token: ${{ secrets.TOKEN }}
-          repo_name: hello-world-js-action
-          action_name: hello-world-js-action
-          runs_to_keep: 12
-          list_only: false
+#on:
+# [pull-request]
+#jobs:
+#  clean_workflow_runners:
+#    runs-on: ubuntu-latest
+#    permissions: write-all
+#    name: Clean workflow runners
+#    steps:
+#      - name: call clean task
+#        uses: HanaaMAldaly/clean-workflow-runners@main
+#        with:
+#          token: ${{ secrets.TOKEN }}
+#          repo_name: hello-world-js-action
+#          action_name: hello-world-js-action
+#          runs_to_keep: 12
+#          list_only: false

@@ -1,0 +1,23 @@
+name: oneapp-setup-env-app
+description: Setup application environment for OneApp
+inputs:
+  PLATFORM:
+    description: Platform type
+    required: true
+  # Add the Environment variable to .env file and it's optional as currently used for beta builds only.
+  ENVIRONMENT:
+    description: Environment type
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Configure .env file
+      shell: bash
+      run: |
+        # generate .env file
+        echo "APP_ENV_KEY=${{ env.APP_ENV_KEY }}" >> file.txt
+         echo "APP_PLATFORM_KEY=${{ env.APP_PLATFORM_KEY }}" >> file.txt
+      env:
+        APP_ENV_KEY: ${{ inputs.ENVIRONMENT }}
+        APP_PLATFORM_KEY: ${{ inputs.PLATFORM }}
