@@ -39,15 +39,15 @@ runs:
         if [[ "${{ github.event_name }}" == 'pull_request'* ]]; then
           echo "affected:test --base=origin/${{ github.base_ref }} --head=refs/remotes/pull/${{ github.event.number }}/merge"
         
-        # Get current and previous run timestamps
-        sha=5afc3b93a2c29e36651e12c38b30594302c8d8d7
-                currentShaResponse=$(curl -s -H "Authorization: Bearer ${{ env.ONEPLATFORM_GITHUB_TOKEN }}" \
-                https://github.vodafone.com/api/v3/repos/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/commits/$sha/pulls)
-        echo "$currentShaResponse"
-        CURRENT_RUN_DATE=$(echo "$currentShaResponse" | jq -r 'map(select(.merged_at != null and .merge_commit_sha == "'"$sh"'" )) | .[0].merged_at')
-        echo "CURRENT_RUN_DATE=$CURRENT_RUN_DATE" >> $GITHUB_ENV
-        echo "Current run commit sha date: $CURRENT_RUN_DATE"
-        # Get previous run date
+#        # Get current and previous run timestamps
+#        sha=5afc3b93a2c29e36651e12c38b30594302c8d8d7
+#                currentShaResponse=$(curl -s -H "Authorization: Bearer ${{ env.ONEPLATFORM_GITHUB_TOKEN }}" \
+#                https://github.vodafone.com/api/v3/repos/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/commits/$sha/pulls)
+#        echo "$currentShaResponse"
+#        CURRENT_RUN_DATE=$(echo "$currentShaResponse" | jq -r 'map(select(.merged_at != null and .merge_commit_sha == "'"$sh"'" )) | .[0].merged_at')
+#        echo "CURRENT_RUN_DATE=$CURRENT_RUN_DATE" >> $GITHUB_ENV
+#        echo "Current run commit sha date: $CURRENT_RUN_DATE"
+#        # Get previous run date
 #        API_URL="https://github.vodafone.com/api/v3/repos/VFGroup-MyVodafone-OnePlatform/MyVodafone-OneApp/actions/workflows/${{ inputs.workflow_name }}.yml/runs?status=completed&branch=${{ inputs.base_branch }}"
 #        RESPONSE=$(curl -s -H "Authorization: Bearer ${{ env.TOKEN }}" "$API_URL")
 #        PREV_RUN_SHA=$(echo "$RESPONSE" | jq -r '.workflow_runs[] | select(.conclusion == "success") | .head_sha' | head -n 1)
