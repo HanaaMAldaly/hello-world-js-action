@@ -7,6 +7,7 @@
 - remove the old runners
 
 ## paramters
+repo
 
 
 ## how to use
