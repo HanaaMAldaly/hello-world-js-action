@@ -35,5 +35,5 @@ runs:
     - name: Set environment vars
       shell: bash
       run: |
-        if [[ "${{ github.event_name }}" == 'pull_request'* ]]; then
-          echo "affected:test --base=origin/${{ github.base_ref }} --head=refs/remotes/pull/${{ github.event.number }}/merge"
+        echo "affected:test --base=origin/${{ github.base_ref }} --head=refs/remotes/pull/${{ github.event.number }}/merge"
+        echo hi
