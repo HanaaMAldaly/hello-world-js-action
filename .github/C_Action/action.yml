@@ -35,6 +35,10 @@ runs:
     - name: Set environment vars
       shell: bash
       run: |
+        
+        if [[ "${{ github.event_name }}" == 'pull_request'* ]]; then
+          echo "affected:test --base=origin/${{ github.base_ref }} --head=refs/remotes/pull/${{ github.event.number }}/merge"
+        
         # Get current and previous run timestamps
         sha=5afc3b93a2c29e36651e12c38b30594302c8d8d7
                 currentShaResponse=$(curl -s -H "Authorization: Bearer ${{ env.ONEPLATFORM_GITHUB_TOKEN }}" \
